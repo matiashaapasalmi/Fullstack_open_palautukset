@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import Note from './components/Note'
+import axios from 'axios'
+
 
 const App = (props) => {
   const [notes, setNotes] = useState(props.notes)
@@ -7,18 +9,24 @@ const App = (props) => {
     'a new note...'
   ) 
 
-  const addNote = (event) => {
+  const addNote = event => {
     event.preventDefault()
     const noteObject = {
       content: newNote,
       date: new Date().toISOString(),
       important: Math.random() > 0.5,
-      id: notes.length + 1,
     }
+  
+    axios
+      .post('http://localhost:3001/notes', noteObject)
+      .then(response => {
+        console.log(response)
+      })
+  }
   
     setNotes(notes.concat(noteObject))
     setNewNote('')
-  }
+  
   const handleNoteChange = (event) => {
     console.log(event.target.value)
     setNewNote(event.target.value)
@@ -39,5 +47,5 @@ const App = (props) => {
       </form>   
     </div>
   )
-}
+}    
 export default App 
