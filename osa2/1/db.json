@@ -4,13 +4,13 @@
       "id": 1,
       "content": "HTML is easy",
       "date": "2022-1-17T17:30:31.098Z",
-      "important": false
+      "important": true
     },
     {
       "id": 2,
       "content": "Browser can execute only JavaScript",
       "date": "2022-1-17T18:39:34.091Z",
-      "important": false
+      "important": true
     },
     {
       "id": 3,
@@ -21,13 +21,13 @@
     {
       "content": "Moro maan",
       "date": "2022-12-15T16:00:25.425Z",
-      "important": false,
+      "important": true,
       "id": 4
     },
     {
       "content": "Jep",
       "date": "2022-12-15T16:05:58.829Z",
-      "important": false,
+      "important": true,
       "id": 5
     },
     {
@@ -35,6 +35,12 @@
       "date": "2022-12-16T14:45:24.082Z",
       "important": false,
       "id": 6
+    },
+    {
+      "content": "wefwefw",
+      "date": "2022-12-20T12:12:34.987Z",
+      "important": true,
+      "id": 7
     }
   ]
 }

@@ -1,5 +1,8 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
+
+app.use(cors())
 app.use(express.json())
 
 let notes = [
@@ -30,10 +33,11 @@ app.get('/api/notes', (req, res) => {
   res.json(notes)
 })
 
-const PORT = 3001
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
-})
+// kommentoitu nettiin vetoa varten
+//const PORT = 3001
+//app.listen(PORT, () => {
+  //console.log(`Server running on port ${PORT}`)
+//})
 
 app.get('/api/notes/:id', (request, response) => {
   const id = Number(request.params.id)
@@ -78,4 +82,8 @@ app.post('/api/notes', (request, response) => {
   notes = notes.concat(note)
 
   response.json(note)
+})
+const PORT = process.env.PORT || 3001
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
 })
