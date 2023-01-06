@@ -1,19 +1,8 @@
 import { useState, useEffect } from 'react'
+import axios from 'axios'
 import noteService from './services/notes'
 import './index.css'
 
-const mongoose = require('mongoose')
-const password = "jKcsXikJWF3nZlnG"
-const url = 
-  `mongodb+srv://matiashaapasalmi:${password}@cluster0.tgrehpn.mongodb.net/noteApp?retryWrites=true&w=majority`
-
-mongoose.connect(url)
-const Note = mongoose.model('Note', noteSchema)
-const noteSchema = new mongoose.Schema({
-  content: String,
-  date: Date,
-  important: Boolean,
-})
 
 const Footer = () => {
   const footerStyle = {
@@ -37,13 +26,13 @@ const App = (props) => {
 
   
   console.log('render', notes.length, 'notes') 
-
+  
   useEffect(() => {
     noteService
-  .getAll()
-  .then(initialNotes => {
-    setNotes(initialNotes)
-  })
+      .getAll()
+      .then(response => {
+        setNotes(response.data)
+      })
   }, [])
 
   const toggleImportanceOf = id => {
@@ -59,22 +48,18 @@ const App = (props) => {
 
   const addNote = (event) => {
     event.preventDefault()
-    const Note = {
+    const noteObject = {
       content: newNote,
       date: new Date().toISOString(),
       important: Math.random() > 0.5
     }
 
 
-    //noteService
-      //.create(noteObject)
-      //.then(response => {
-        //setNotes(notes.concat(response.data))
-        //setNewNote('')
-      //})
-
-      noteObject.save().then(result => {
-        mongoose.connection.close()
+    noteService
+      .create(noteObject)
+      .then(response => {
+        setNotes(notes.concat(response.data))
+        setNewNote('')
       })
     }
   
