@@ -3,6 +3,8 @@ import axios from 'axios'
 import noteService from './services/notes'
 import './index.css'
 
+const usersRouter = require('./controllers/users')
+
 
 const Footer = () => {
   const footerStyle = {
@@ -24,7 +26,7 @@ const App = (props) => {
   const [newNote, setNewNote] = useState('')
   const [showAll, setShowAll] = useState(true)
 
-  
+
   console.log('render', notes.length, 'notes') 
   
   useEffect(() => {
@@ -110,5 +112,8 @@ const App = (props) => {
       <Footer />
     </div>
   )
+
 }  
+App.use('/api/users', usersRouter)
+
 export default App 
